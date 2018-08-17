@@ -24,7 +24,7 @@ post '/signup' do
     password: params['password']
   )
   user.save
-  redirect :home
+  redirect '/'
 end
 
 get '/login' do
@@ -43,7 +43,7 @@ post '/login' do
     redirect :account
   else
     p 'Invalid credentials'
-    redirect :home
+    redirect '/'
   end
 end
 
