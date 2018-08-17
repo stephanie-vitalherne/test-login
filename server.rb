@@ -48,7 +48,14 @@ post '/login' do
 end
 
 get '/account' do
+  p session[:user]
   erb :account
+end
+
+get '/logout' do
+  session[:user] = nil
+  p 'user has logged out'
+  redirect '/'
 end
 
 require './models'
