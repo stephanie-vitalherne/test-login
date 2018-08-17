@@ -1,5 +1,7 @@
 require 'sinatra'
 require 'sinatra/activerecord'
+# require 'securerandom'
+enable :sessions
 
 set :database, 'sqlite3:login.sqlite3'
 
