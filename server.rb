@@ -20,6 +20,10 @@ get '/signup' do
   erb :signup
 end
 
+post '/signup' do
+  p params
+end
+
 get '/account' do
   erb :account
 end
