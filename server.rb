@@ -39,7 +39,7 @@ post '/login' do
   # if they match, log in the user
   user = User.find_by(email: email)
   if user.password == given_password
-    session[:user] = email.to_s
+    session[:user] = user
     redirect :account
   else
     p 'Invalid credentials'
@@ -48,7 +48,6 @@ post '/login' do
 end
 
 get '/account' do
-  p session[:user]
   erb :account
 end
 
