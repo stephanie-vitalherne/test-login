@@ -19,8 +19,8 @@ end
 post '/signup' do
   p params
   user = User.new(
+    name: params['first_name'],
     email: params['email'],
-    name: params['fullname'],
     password: params['password']
   )
   user.save
@@ -32,13 +32,19 @@ get '/login' do
 end
 
 post '/login' do
-  p params
-  user = User.create(
-    first_name: params['first_name'],
-    email: params['email']
-  )
-  p "Welcome to the site, #{params['first_name']}"
-  redirect :account
+  email = params['email']
+  given_password = params['password']
+  # check if email exists
+  # check to see if the email has a password == form password
+  # if they match, log in the user
+  user = User.find_by(email: email)
+  if user.password == given_password
+    session[:user] = email.to_s
+    redirect :account
+  else
+    p 'Invalid credentials'
+    redirect :home
+  end
 end
 
 get '/account' do
