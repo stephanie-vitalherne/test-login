@@ -16,6 +16,14 @@ get '/login' do
   erb :login
 end
 
+get '/signup' do
+  erb :signup
+end
+
+get '/account' do
+  erb :account
+end
+
 post '/login' do
   p params
   user = User.create(
@@ -24,10 +32,6 @@ post '/login' do
   )
   p "Welcome to the site, #{params['first_name']}"
   redirect :account
-end
-
-get '/account' do
-  erb :account
 end
 
 require './models'
