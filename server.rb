@@ -12,20 +12,23 @@ get '/' do
   erb :home
 end
 
-get '/login' do
-  erb :login
-end
-
 get '/signup' do
   erb :signup
 end
 
 post '/signup' do
   p params
+  user = User.new(
+    email: params['email'],
+    name: params['fullname'],
+    password: params['password']
+  )
+  user.save
+  redirect :home
 end
 
-get '/account' do
-  erb :account
+get '/login' do
+  erb :login
 end
 
 post '/login' do
@@ -36,6 +39,10 @@ post '/login' do
   )
   p "Welcome to the site, #{params['first_name']}"
   redirect :account
+end
+
+get '/account' do
+  erb :account
 end
 
 require './models'
