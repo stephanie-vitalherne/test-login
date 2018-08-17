@@ -10,4 +10,8 @@ get '/' do
   erb :home
 end
 
+get '/login' do
+  erb :login
+end
+
 require './models'
